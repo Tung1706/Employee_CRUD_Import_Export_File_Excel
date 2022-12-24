@@ -7,7 +7,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -59,5 +58,4 @@ public class Employee {
     @Email(message = "Email không hợp lệ")
     @Column(name = COLUMN_EMAIL_NAME)
     private String email;
-
 }

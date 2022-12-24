@@ -27,6 +27,7 @@ public class EmployeeExcelService {
 
     public ByteArrayInputStream exportEmployee() {
         List<Employee> employees = employeeRepository.findAll();
+
         ByteArrayInputStream inputStream = ExcelEmployeeHelper.employeesToExcel(employees);
         return inputStream;
     }

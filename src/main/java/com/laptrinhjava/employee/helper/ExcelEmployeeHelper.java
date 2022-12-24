@@ -39,6 +39,7 @@ public class ExcelEmployeeHelper {
                 Cell cell = headerRow.createCell(col);
                 cell.setCellValue(HEADERs[col]);
             }
+
             int rowIdx = 1;
             for (Employee employee : employees) {
                 Row row = sheet.createRow(rowIdx++);
@@ -65,6 +66,7 @@ public class ExcelEmployeeHelper {
             Sheet sheet = workbook.getSheet(SHEET);
             Iterator<Row> rows = sheet.iterator();
             List<Employee> employees = new ArrayList<Employee>();
+
             int rowNumber = 0;
             while (rows.hasNext()) {
                 Row employeeRow = rows.next();
@@ -72,8 +74,10 @@ public class ExcelEmployeeHelper {
                     rowNumber++;
                     continue;
                 }
+
                 Iterator<Cell> cellsInRow = employeeRow.iterator();
                 Employee employee = new Employee();
+
                 int cellIdx = 0;
                 while (cellsInRow.hasNext()) {
                     Cell employeeCell = cellsInRow.next();

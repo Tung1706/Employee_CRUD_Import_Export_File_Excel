@@ -11,5 +11,4 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             "e.firstname LIKE CONCAT('%',:query, '%')" +
             "Or e.address LIKE CONCAT('%', :query, '%')")
     List<Employee> searchEmployees(String query);
-
 }

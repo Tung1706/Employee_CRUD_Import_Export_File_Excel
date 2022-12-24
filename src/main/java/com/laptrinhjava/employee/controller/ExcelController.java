@@ -22,6 +22,7 @@ public class ExcelController {
         this.excelService = excelService;
     }
 
+    //http://localhost:8080/api/employees/import
     @PostMapping("/import")
     public ResponseEntity<ResponseMessage> uploadEmployeeFile(@RequestParam("file") MultipartFile file) {
         String message = "";
@@ -39,6 +40,7 @@ public class ExcelController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
     }
 
+    //http://localhost:8080/api/employees/export
     @GetMapping("/export")
     public ResponseEntity<Resource> downloadEmployeeFile() {
         String fileName = "Employees.xlsx";
