@@ -6,8 +6,12 @@ import com.laptrinhjava.employee.repository.EmployeeRepository;
 import com.laptrinhjava.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -42,6 +46,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         exitstingEmployee.setLastname(employee.getLastname());
         employeeRepository.save(exitstingEmployee);
         return exitstingEmployee;
+    }
+
+    @Override
+    public Employee updateEmployeeByFields(Integer id, Map<String, Object> fields) {
+        Optional<Employee> exitstingEmployee = employeeRepository.findById(id);
+        if (exitstingEmployee.isPresent()) {
+            fields.forEach((key, value) -> {
+                Field field = ReflectionUtils.findField(Employee.class, key);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, exitstingEmployee.get(), value);
+            });
+            return employeeRepository.save(exitstingEmployee.get());
+        }
+        return null;
     }
 
     @Override

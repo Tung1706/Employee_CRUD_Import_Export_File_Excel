@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -50,5 +51,11 @@ public class EmployeeController {
     public ResponseEntity<String> deleteEmployee(@PathVariable Integer id) {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<String>("Employee deleted successfully!", HttpStatus.OK);
+    }
+
+    //http://localhost:8080/api/employees/id
+    @PatchMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployeeFields(@PathVariable Integer id, @RequestBody Map<String, Object> fields) {
+        return new ResponseEntity<Employee>(employeeService.updateEmployeeByFields(id, fields), HttpStatus.OK);
     }
 }

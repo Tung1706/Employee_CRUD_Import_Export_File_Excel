@@ -3,6 +3,7 @@ package com.laptrinhjava.employee.service;
 import com.laptrinhjava.employee.model.Employee;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EmployeeService {
     Employee createEmployee(Employee employee);
@@ -16,4 +17,6 @@ public interface EmployeeService {
     Employee updateEmployee(Employee employee, Integer id);
 
     void deleteEmployee(Integer id);
+
+    Employee updateEmployeeByFields(Integer id, Map<String, Object> fields);
 }
